@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>gwt-ol3</groupId>
+    <artifactId>gwt-ol3-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>gwt-ol3-jsni-client</artifactId>
+  <packaging>jar</packaging>
+
+  <name>gwt-ol3-jsni-client</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <ol3.basedir>${project.basedir}/../../ol3/master/</ol3.basedir>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>gruifo</groupId>
+        <artifactId>gruifo-maven-plugin</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <executions>
+          <execution>
+            <configuration>
+              <outputType>JSNI</outputType>
+              <typeMapperFile>${project.basedir}/src/main/gruifo/type_mapper.properties</typeMapperFile>
+              <includes>
+                <include>${ol3.basedir}src/ol/</include>
+                <include>${ol3.basedir}externs/olx.js</include>
+                <include>${ol3.basedir}externs/oli.js</include>
+              </includes>
+            </configuration>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
